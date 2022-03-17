@@ -13,7 +13,7 @@ const CardRating = ({grade}:RatingForTableType) => {
     let fullStar = Math.round(grade)
     let arr=[]
 
-    while( arr.length !=5){
+    while( arr.length !==5){
         if(fullStar>0){
             arr.push(true)
         }else{

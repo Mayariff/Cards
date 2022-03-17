@@ -1,10 +1,6 @@
-import {AppRootStateType, useAppSelector} from "../store";
-
 import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import {PATH} from "../../ui/Routes/Routes";
 import {restoreState} from "../../dal/localStorage/localStorage";
-import {useAuth} from "./AuthProvider";
-import {connect} from "react-redux";
 
 //оборачиваем страницы , в которых нужна логинизация нпр:export default compose(withAuthRedirect)(Profile);
 
@@ -18,7 +14,7 @@ export function withAuthRedirect<T>(Component: React.ComponentType<T>) {
 
     const RedirectComponent =({...restProps})=>{
         const location= useLocation()
-        const navigate = useNavigate()
+        //const navigate = useNavigate()
         const isLoggedIn = restoreState('isLogged', false)
         //const isLoggedIn= useAppSelector<boolean>(state=> state.Login.isLogged)
 
