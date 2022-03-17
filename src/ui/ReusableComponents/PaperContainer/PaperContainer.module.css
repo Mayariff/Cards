@@ -1,0 +1,60 @@
+.paperContainer{
+    margin: 50px auto;
+    width: 390px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    position: relative;
+}
+
+
+.additionalTitle{
+    color: rgba(60, 45, 61, 0.5);
+    letter-spacing: 0.1em;
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top:20px;
+}
+.mainTitle {
+    color: #2D2E46;
+    padding: 0;
+    margin: 0 auto 10px;
+    position: relative;
+    top: 10px;
+    text-align: center;
+}
+
+.content{
+    position: relative;
+    top:0;
+    bottom:50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    height: 76%;
+    padding: 0 50px 30px;
+    justify-content: space-between;
+}
+.card{
+    padding: 0 20px;
+    bottom:40px;
+    top: 10px;
+    justify-content: space-between;
+}
+
+.content p,
+.content span,
+.content label{
+    font-size: 0.9rem;
+    color: rgba(0,0,0,0.5);
+    text-align: justify;
+}
+
+
+
