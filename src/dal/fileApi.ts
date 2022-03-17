@@ -9,7 +9,6 @@ export const fileApi = {
         return instance.get('file', {responseType: 'blob'})
             .then( ({data}) => {
             const blob = new Blob([data], {type: 'image/jpeg'});
-                console.log(window.URL.createObjectURL(blob))
             return window.URL.createObjectURL(blob)
         })
     },

@@ -4,12 +4,7 @@ import {restoreState} from "../../dal/localStorage/localStorage";
 
 //оборачиваем страницы , в которых нужна логинизация нпр:export default compose(withAuthRedirect)(Profile);
 
-/*export type mapStateToPropsForRedirectType={
-    isAuth: boolean
-}
-let mapStateToPropsForRedirect = (state:AppRootStateType ): mapStateToPropsForRedirectType => {
-    return {isAuth: state.App.isInitialized}
-}*/
+
 export function withAuthRedirect<T>(Component: React.ComponentType<T>) {
 
     const RedirectComponent =({...restProps})=>{
@@ -22,6 +17,5 @@ export function withAuthRedirect<T>(Component: React.ComponentType<T>) {
         return <Component {...restProps as T}/>
     }
 
-    //return connect(mapStateToPropsForRedirect )(RedirectComponent);
     return RedirectComponent
 }
