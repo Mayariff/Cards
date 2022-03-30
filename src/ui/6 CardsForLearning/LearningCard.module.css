@@ -14,5 +14,10 @@
     overflow: auto;
     max-height: 90%;
 }
+.answer{
+    overflow: auto;
+    max-height: 55px;
+}
+
 
 

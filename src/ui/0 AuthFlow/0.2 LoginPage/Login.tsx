@@ -28,8 +28,8 @@ export const Login = () => {
     const status = useAppSelector<RequestStatusType>(state => state.App.status)
 
 
-    const [email, setEmail] = useState<string>('dyatlovivan92@gmail.com')
-    const [password, setPassword] = useState<string>('12345678')
+    const [email, setEmail] = useState<string>('79027972026@yandex.ru')
+    const [password, setPassword] = useState<string>('123456789')
     const [rememberMe, setRememberMe] = useState<boolean>(false)
 
     const handleEmail: ChangeEventHandler<HTMLInputElement> = useCallback((e) => {

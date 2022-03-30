@@ -2,9 +2,9 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import style from './ProfilePage.module.css'
 import Paper from "@mui/material/Paper";
 import {useAppSelector} from "../../bll/store";
-import {PackType, setPacksAT} from "../../bll/reducers/packReducer";
+import {addPackTC, PackType, setPacksAT} from "../../bll/reducers/packReducer";
 import {ParamsPackType} from "../../dal/packsApi";
-import {setAppErrorAC} from "../../bll/reducers/appReducer";
+import {RequestStatusType, setAppErrorAC} from "../../bll/reducers/appReducer";
 import {useDispatch} from "react-redux";
 import {Slider} from "@mui/material";
 import {useDebounce} from "../../utilities/UseDebounce";
@@ -13,8 +13,10 @@ import {compose} from "redux";
 import {withAuthRedirect} from "../../bll/HOK/withAuthRedirect";
 import PacksTable from "../3 PacksTable & Settings/3.1 PacksTable/PacksTable";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-
-
+import ControlPointIcon from "@mui/icons-material/ControlPoint";
+import Button from "@mui/material/Button";
+import {Modal} from "../7 CommonComponents/7.2 Modal/Modal";
+import {AddPack} from "../7 CommonComponents/7.2 Modal/7.2.2 PacksModals/AddPack";
 
 
 const ProfilePage = () => {
@@ -24,6 +26,7 @@ const ProfilePage = () => {
     const packs = useAppSelector<Array<PackType>>(state => state.Packs.cardPacks)
     const userProfileID = useAppSelector<string>(state => state.Profile._id)
     const name = useAppSelector<string>(state => state.Profile.name)
+    const status = useAppSelector<RequestStatusType>(store => store.App.status)
 
 
     const userPacks = packs.filter(p => p.user_id === userProfileID)
@@ -51,6 +54,22 @@ const ProfilePage = () => {
     const debouncedMax = useDebounce(sliderValue[1], 500)
     const debouncedPackName = useDebounce(packName, 500)
 
+    //модалки
+    const [addModal, setAddModal] = useState(false);
+    //закрыть модалку
+    const handleClickAddPack = () => {
+        setAddModal(true)
+    }
+    const closeModal = () => {
+        setAddModal(false)
+    }
+    const addPack = (text: string) => {
+        if (text.length) {
+            dispatch(addPackTC(params, text))
+            setAddModal(false)
+        }
+    }
+
     const title = name !== '' ? `Packs list of ${name}` : `My Packs list`
 
     const params: ParamsPackType = {
@@ -71,7 +90,7 @@ const ProfilePage = () => {
     return (
         <Paper className={style.container}>
             <div className={style.leftMenu}>
-                <ProfileInfo />
+                <ProfileInfo/>
                 <div className={style.settingMenu}>
                     <span className={style.text}>Number of cards</span>
                     <Slider value={sliderValue}
@@ -86,7 +105,14 @@ const ProfilePage = () => {
             <div className={style.main}>
                 <div className={style.headBlock}>
                     <h2 className={style.header}>{title}</h2>
-                    <Search searchValue={packName} onChangeSearch={onChangeSearch}/>
+                    <div className={style.settings}>
+                        <Search searchValue={packName} onChangeSearch={onChangeSearch}/>
+                        <Button variant="outlined" color={'secondary'} disabled={status === 'loading'}
+                                startIcon={<ControlPointIcon/>}
+                                onClick={handleClickAddPack}>
+                            Add Pack
+                        </Button>
+                    </div>
                 </div>
                 <div className={style.mainContent}>
                     <PacksTable params={params}
@@ -95,6 +121,9 @@ const ProfilePage = () => {
                                 packs={userPacks}/>
                 </div>
             </div>
+            <Modal isOpen={addModal} closeModal={closeModal}>
+                <AddPack showAdd={setAddModal} addPack={addPack}/>
+            </Modal>
         </Paper>
     );
 };

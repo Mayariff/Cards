@@ -19,7 +19,7 @@ const CardAnswer = ({currentCard}: CardAnswerType) => {
             </div>
             <div>
                 <h3 className={style.title}>Answer:</h3>
-                <p className={style.info}>{answer}</p>
+                <p className={style.answer}>{answer}</p>
             </div>
             <Rating id={currentCard.cardsPack_id}/>
         </div>

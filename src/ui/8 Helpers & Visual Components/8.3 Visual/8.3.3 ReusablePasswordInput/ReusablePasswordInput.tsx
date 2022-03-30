@@ -1,7 +1,6 @@
 import {TextField} from '@mui/material';
 import React, {ChangeEvent, MouseEventHandler, useState} from 'react';
 import style from './ReusablePasswordInput.module.css'
-import hidePass from '../../../assets/icons/hidePass.svg'
 import IconButton from "@mui/material/IconButton";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 

@@ -34,7 +34,12 @@
 }
 .headBlock{
  position: sticky;
- padding: 14px 0 10px 42px  ;
+ padding: 14px 34px 42px  ;
+}
+.settings{
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
 }
 
 .header{

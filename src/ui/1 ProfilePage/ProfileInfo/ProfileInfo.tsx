@@ -38,7 +38,7 @@ return (
             {showButton &&
                 <div className={style.icon}><AutoFixHighOutlinedIcon fontSize={"medium"} color={'disabled'}/></div>}
             <img src={ava} alt='profilePhoto' className={style.image}/>
-            <span className={style.name}> {name ? name : email}</span>
+            <span className={style.name}> {name ? name : 'test anonymous'}</span>
             <span className={style.aboutMe}> I created {count} Card's Packs </span>
         </div>
         <ChangeProfileModal name={name}
